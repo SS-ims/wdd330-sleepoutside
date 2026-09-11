@@ -13,7 +13,10 @@ export default defineConfig({
         checkout: resolve(__dirname, "src/checkout/index.html"),
          product: resolve(__dirname, "src/product_pages/index.html"
         ),
-
+       preview: {
+          host: true,
+          allowedHosts: ['wdd330-sleepoutside-cxz0.onrender.com']
+        }
       },
     },
   },
