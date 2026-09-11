@@ -1,5 +1,5 @@
 import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
+import ProductList from "./Productlist.mjs";
 
 //set the datasourse
 const dataSourse = new ProductData("tents");
