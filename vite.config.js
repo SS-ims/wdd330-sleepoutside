@@ -3,7 +3,10 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "src/",
-
+    preview: {
+          host: true,
+          allowedHosts: ['wdd330-sleepoutside-cxz0.onrender.com']
+    },
   build: {
     outDir: "../dist",
     rollupOptions: {
@@ -13,10 +16,6 @@ export default defineConfig({
         checkout: resolve(__dirname, "src/checkout/index.html"),
          product: resolve(__dirname, "src/product_pages/index.html"
         ),
-       preview: {
-          host: true,
-          allowedHosts: ['wdd330-sleepoutside-cxz0.onrender.com']
-        }
       },
     },
   },
