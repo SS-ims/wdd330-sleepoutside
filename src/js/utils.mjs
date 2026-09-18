@@ -26,13 +26,13 @@ export function getParam(param){
   return product
 }
 
-export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = true) {
-  const htmlstrings = list.map(template)
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(template);
 
   if (clear) {
     parentElement.innerHTML = "";
   }
-  parentElement.insertAdjacentHTML(position, htmlstrings.join(""));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
@@ -51,8 +51,6 @@ async function loadTemplate(path) {
 export async function loadHeaderFooter () {
 const headerTemplate = await loadTemplate("../partials/header.html");
 const FooterTemplate = await loadTemplate("../partials/footer.html");
-
-console.log(headerTemplate);
 
 const headerElement = document.querySelector("#main-header");
 const FooterElement = document.querySelector("#main-footer");
