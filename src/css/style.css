@@ -90,6 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
+
 .logo--square > div {
   margin-top: -1.7em;
 }
@@ -108,6 +109,23 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+}
+
+.search-box{
+overflow: hidden;
+display: flex;
+font-size: 30px;
+text-align: right;
+  margin-top: 8px;
+  margin-right: 16px;
+padding-top: 30;
+}
+
+.search-box button{
+  float: right;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
 }
 
 .divider {

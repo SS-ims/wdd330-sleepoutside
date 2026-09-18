@@ -13,12 +13,24 @@ export default class ProductData {
     //this.category = category;
     //this.path = `../json/${this.category}.json`;
   }
-  async getData(category) {
-  const response = await fetch(`${baseURL}products/search/${category}`);
+  async getData(term, type) {
+  if (type=='search'){
+  const response = await fetch(`${baseURL}products`);
+
+  const data = await convertToJson(response);
+  const filteredresponse = data.filter(r => r.Name.includes(term) || r.DescriptionHtmlSimple.includes(term)) 
+
+  return filteredresponse;
+
+  }
+  else{
+  const response = await fetch(`${baseURL}products/search/${term}`);
 
   const data = await convertToJson(response);
 
   return data.Result;
+
+  }
 }
 
   async findProductById(id) {

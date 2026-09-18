@@ -12,26 +12,39 @@ function productCardTemplate(product) {
   </li>`;
 }
 
+function noresult (element){
+          const NoResults = document.createElement("p");
+          const NoResultsText = document.createTextNode("There are no results");
+          //add the text to the page
+          NoResults.appendChild(NoResultsText)
+          element.appendChild(NoResults);
+}
 
 export default class ProductList  {
-    constructor (category, dataSource, listElement) {
+    constructor (input, dataSource, listElement, type) {
         //paramaters the constructor receaves
-        this.category  = category;
+        this.input  = input;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.type = type;
     }
 
     async init() {
+        const list = await this.dataSource.getData(this.input, this.type);
         //makes data source return and await being resoloved
-        const list = await this.dataSource.getData(this.category);
         //render the list next
         this.renderList(list);
-        document.querySelector(".title").textContent = this.category;
+        document.querySelector(".title").textContent = this.input;
     }
 
 
     renderList(list) {
         //renders the list with template
-       renderListWithTemplate(productCardTemplate, this.listElement, list); 
+        if (list !== "No products found" && list !== "{}" && typeof list !== "undefined" && list.length !== 0){
+          renderListWithTemplate(productCardTemplate, this.listElement, list); 
+          console.log(list)
+        } else {
+        noresult(this.listElement);
+        };
     }
 }
