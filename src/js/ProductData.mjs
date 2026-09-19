@@ -16,9 +16,9 @@ export default class ProductData {
   async getData(term, type) {
   if (type=='search'){
   const response = await fetch(`${baseURL}products`);
-
+  const termlower = term.toLowerCase()
   const data = await convertToJson(response);
-  const filteredresponse = data.filter(r => r.Name.includes(term) || r.DescriptionHtmlSimple.includes(term)) 
+  const filteredresponse = data.filter(r => r.Name.toLowerCase().includes(termlower) || r.DescriptionHtmlSimple.toLowerCase().includes(termlower)) 
 
   return filteredresponse;
 
