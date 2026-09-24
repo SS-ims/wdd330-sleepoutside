@@ -13,7 +13,8 @@ export default class ExternalServices {
     //this.category = category;
     //this.path = `../json/${this.category}.json`;
   }
-  async getData(term, type) {
+
+async getData(term, type) {
   if (type=='search'){
   const response = await fetch(`${baseURL}products`);
   const termlower = term.toLowerCase()
@@ -39,4 +40,16 @@ export default class ExternalServices {
     console.log(data.Result)
     return data.Result;
   }
+    async checkout(payload) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    };
+    return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
+  }
+
 }
+

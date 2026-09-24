@@ -22,7 +22,7 @@
         <form name="checkout">
           <input type="hidden" name="orderDate" id="orderdate">
           <fieldset>
-            <ledgend></ledgend>
+            <legend></legend>
               <div class="CheckoutCustomerName">
                 <label for="nameFirst">First Name</label>
                 <input type="text" name="nameFirst" id="nameFirst">
@@ -40,7 +40,7 @@
                 <label for="ZipCode">Zip Code</label>
                 <input type="text" name="ZipCode" id="ZipCode">
               </div>
-              <ledgend>Payment</ledgend>
+              <legend>Payment</legend>
               <div class="CheckoutPayment">
                 <label for="CreditCard">Credit Card Number</label>
                 <input type="text" name="CreditCard" id="CreditCard">
@@ -51,17 +51,18 @@
               </div>
           </fieldset>
           <fieldset class="checkout-summary">
-            <div></div>
-            <div id="Orederitems"></div>
-            <div></div>
-            <div id="Subtotal"></div>
-            <div></div>
-            <div id="Tax"></div>
-            <div></div>
-            <div id="Shipping Estimate"></div>
-            <div></div>
-            <div id="Order Total"></div>
+              <div class="order-summary">
+                <div>Subtotal</div>
+                <div id="Subtotal"></div>
+                <div>Tax</div>
+                <div id="Tax"></div>
+                <div>Shipping</div>
+                <div id="Shipping_Estimate"></div>
+                <div>Total</div>
+                <div id="Order_Total"></div>
+            </div>
           </fieldset>
+          <button type="submit" id="submitorder"></button>
         </form>
       </section>
     </main>
