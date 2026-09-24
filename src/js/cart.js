@@ -2,9 +2,9 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import {loadHeaderFooter} from "./utils.mjs";
 
 loadHeaderFooter();
+const cartItems = getLocalStorage("so-cart");
 
 function renderCartContents() {
-   const cartItems = getLocalStorage("so-cart");
     if (cartItems !== null && cartItems.length > 0){
       const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -21,8 +21,22 @@ function renderCartContents() {
     }
 }
 
+function renderFinalprice() {
+    if (cartItems !== null && cartItems.length > 0){
+      var CaculatedPrice = 0
+      for (var p=0; p < cartItems.length; p++){
+          CaculatedPrice += parseInt(cartItems[p].FinalPrice);
+      }
+      const Pricedisplay = document.createElement("p");
+      const Pricedisplaytxt = document.createTextNode("$" + CaculatedPrice);
+      Pricedisplay.appendChild(Pricedisplaytxt)
+      document.querySelector(".cart-total").appendChild(Pricedisplay);
+    } 
+}
+
+
+
  function removeProductfromCart(productId) {
-  console.log(productId)
    let tempcartItems = getLocalStorage("so-cart") || [];
    tempcartItems.splice(productId,1) 
    setLocalStorage("so-cart", tempcartItems);
@@ -50,3 +64,4 @@ function cartItemTemplate(item, id) {
 }
 
 renderCartContents();
+renderFinalprice();
