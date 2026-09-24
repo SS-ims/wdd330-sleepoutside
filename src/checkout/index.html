@@ -14,12 +14,56 @@
 
   <body>
     <header class="divider" id="main-header">
-
     </header>
 
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form name="checkout">
+          <input type="hidden" name="orderDate" id="orderdate">
+          <fieldset>
+            <legend></legend>
+              <div class="CheckoutCustomerName">
+                <label for="nameFirst">First Name</label>
+                <input type="text" name="nameFirst" id="nameFirst">
+                <label for="nameLast">Last Name</label>
+                <input type="text" name="nameLast" id="nameLast">
+              </div>
+              <div class="CheckoutDeliverAdress">
+
+                <label for="StreetAdress">Street Address</label>
+                <input type="text" name="StreetAdress" id="StreetAdress">
+                <label for="CityAdress">City</label>
+                <input type="text" name="CityAdress" id="CityAdress">
+                <label for="StateAdress">State</label>
+                <input type="text" name="StateAdress" id="StateAdress">
+                <label for="ZipCode">Zip Code</label>
+                <input type="text" name="ZipCode" id="ZipCode">
+              </div>
+              <legend>Payment</legend>
+              <div class="CheckoutPayment">
+                <label for="CreditCard">Credit Card Number</label>
+                <input type="text" name="CreditCard" id="CreditCard">
+                <label for="CardExperationDate">Expiration Date</label>
+                <input type="text" name="CardExperationDate" id="CardExperationDate">
+                <label for="CardSecurityCode">Security Code</label>
+                <input type="text" name="CardSecurityCode" id="CardSecurityCode">
+              </div>
+          </fieldset>
+          <fieldset class="checkout-summary">
+              <div class="order-summary">
+                <div>Subtotal</div>
+                <div id="Subtotal"></div>
+                <div>Tax</div>
+                <div id="Tax"></div>
+                <div>Shipping</div>
+                <div id="Shipping_Estimate"></div>
+                <div>Total</div>
+                <div id="Order_Total"></div>
+            </div>
+          </fieldset>
+          <button type="submit" id="submitorder"></button>
+        </form>
       </section>
     </main>
 
