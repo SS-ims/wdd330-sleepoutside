@@ -57,8 +57,16 @@ const FooterElement = document.querySelector("#main-footer");
 
 renderWithTemplate (headerTemplate, headerElement);
 renderWithTemplate (FooterTemplate, FooterElement);
-}
 
+const cart = getLocalStorage("so-cart");
+
+const cartsize = cart.length;
+
+  if (cartsize != 0) {
+      console.log(cartsize);
+      document.getElementById('superscript').textContent = cartsize;
+  }
+}
 export function alertMessage(message, scroll = true) {
   const alert = document.createElement("div");
   alert.className = "Alert";

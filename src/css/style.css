@@ -279,3 +279,19 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.superscript {
+  padding: 0 5px;
+  position: fixed;
+  vertical-align: top;
+  background-color: var(--primary-color);
+  margin-left: -10px; 
+  font-size: 12px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.carticon {
+  position: block;
+}
