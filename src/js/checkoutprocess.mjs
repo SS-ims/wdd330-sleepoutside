@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage,  alertMessage, removeAllAlerts,} from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -19,11 +19,10 @@ function packageItems(items) {
   // convert the list of products from localStorage to the simpler form required for the checkout process.
   // An Array.map would be perfect for this process.
     const simplifieditems = items.map((item) => {
-    console.log(item);
     return {
-        item: item.id,
+        item: item.Id,
         price: item.FinalPrice,
-        name: item.name,
+        name: item.Name,
         quantity: 1,
         }
     })
@@ -50,7 +49,7 @@ export default class CheckoutProcess {
   calculateItemSubTotal() {
     // calculate and display the total dollar amount of the items in the cart, and the number of items.
     let Calculatedprice = 0
-      for (var p=0; p < this.list.length; p++){
+      for (let p=0; p < this.list.length; p++){
           Calculatedprice += parseFloat(this.list[p].FinalPrice);
       }
       return Calculatedprice;
@@ -81,7 +80,7 @@ export default class CheckoutProcess {
     subtotalElement.innerText = `$${this.itemTotal.toFixed(2)}`;
     TaxElement.innerText = `$${this.tax.toFixed(2)}`;
     shippingElement.innerText = `$${this.shipping.toFixed(2)}`;
-    orderTotalElement.v = `$${this.orderTotal.toFixed(2)}`;
+    orderTotalElement.innerText = `$${this.orderTotal.toFixed(2)}`;
 
   }
   async checkout() {
@@ -90,19 +89,24 @@ export default class CheckoutProcess {
   // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
   // call the checkout method in the ExternalServices module and send it the JSON order data.
     const formElement = document.forms["checkout"];
-    const order = formDataToJSON(formElement);
+    const payload = formDataToJSON(formElement);
 
-    
-    order.orderDate = new Date().toISOString();
-    order.orderTotal = this.orderTotal;
-    order.tax = this.tax;
-    order.shipping = this.shipping;
-    order.items = packageItems(this.list);
+    payload.orderDate = new Date().toISOString();
+    payload.orderTotal = this.orderTotal;
+    payload.tax = this.tax;
+    payload.shipping = this.shipping;
+    payload.items = packageItems(this.list);
+    console.log (payload);
     try {
-        const response = await services.checkout(order);
-        console.log(response);
+        await services.checkout(payload);
+        setLocalStorage(this.key, []);
+        window.location.assign("/checkout/success.html");
     } catch (err) {
-        console.log(err);
+        removeAllAlerts();
+        const messages = err.message && typeof err.message === "object"
+          ? Object.values(err.message)
+          : [err.message || "Unable to place your order."]
+        messages.forEach((message) => alertMessage(message))
     }
 
   }

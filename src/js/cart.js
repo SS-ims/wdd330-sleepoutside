@@ -33,7 +33,7 @@ function renderFinalprice() {
       document.querySelector(".cart-total").appendChild(Pricedisplay);
     } 
     else {
-      document.querySelector(".cart-footer.hide").remove();
+      document.querySelector(".cart-footer").remove();
     }
 }
 
